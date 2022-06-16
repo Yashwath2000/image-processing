@@ -7,7 +7,8 @@ img1=cv2.imread('flower4.jpg',0)
 cv2.imshow('flower4',img1)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-![image](https://user-images.githubusercontent.com/98145017/173816666-6895a466-f0d4-452c-bde7-7352e48c8db9.png)
+![image](https://user-images.githubusercontent.com/98145017/174034372-bacd8bc6-134a-4167-a42c-d2aacab27b06.png)<br>
+
 2.Develop a program to display the image using matplot.lib
 import matplotlib.image as mping
 import matplotlib.pyplot as plt
