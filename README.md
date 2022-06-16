@@ -1,7 +1,7 @@
 # image-processing
 http://localhost:8888/notebooks/yashwath%20ip%20lab/exercises.ipynb
 
-1.develop a program to display greyscale image using read and write operation<br>
+1.Develop a program to display greyscale image using read and write operation<br>
 import cv2<br>
 img1=cv2.imread('flower4.jpg',0)<br>
 cv2.imshow('flower4',img1)<br>
@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt<br>
 img=mping.imread('butterfly2.jpg')<br>
 plt.imshow(img)<br>
 ![image](https://user-images.githubusercontent.com/98145017/173817349-b1c8b2ca-6353-4499-80e4-5a06ac5bb98d.png)<br>
-3.
+3.Develop a program to perform linear transformation rotation<br>
 import cv2<br>
 from PIL import Image<br>
 img=Image.open("leaf1.jpg")<br>
@@ -23,7 +23,10 @@ img=img.rotate(180)<br>
 img.show()<br>
 cv2.waitKey(0)<br>
 cv2.destroyAllWindows()<br>
-4.<br>
+OUTPUT:<br>
+![image](https://user-images.githubusercontent.com/98145017/174046198-f567785b-8ee7-4e28-b2b3-fe636624da5b.png)<br>
+
+4.Develop a program to convert color string to RGB color values.<br>
 import cv2<br>
 from PIL import ImageColor<br>
 #using getrgb for yellow<br>
@@ -35,13 +38,13 @@ print(img2)<br>
 output:<br>
 (255, 255, 0)<br>
 (255, 0, 0)<br>
-5.<br>
+5.Write a program to create image using colors <br>
 from PIL import Image<br>
 img=Image.new("RGB",(200,400),(255,255,0))<br>
 img.show()<br>
 output:<br>
 ![image](https://user-images.githubusercontent.com/98145017/174035798-b3c298d4-fd20-43ac-8ca9-33787ce7c99e.png)<br>
-6.<br>
+6.Develop a program to visualise the image using various color spaces<br>
 import cv2<br>
 import matplotlib.pyplot as plt<br>
 import numpy as np<br>
@@ -57,7 +60,7 @@ plt.show()<br>
 OUTPUT:<br>
 ![image](https://user-images.githubusercontent.com/98145017/174035974-b0cfe492-6945-417c-ba0e-02762aaf1964.png)<br>
 ![image](https://user-images.githubusercontent.com/98145017/174036076-ea7335f1-103b-4f4f-8858-18d16d193499.png)<br>
-7.<br>
+7.Write a program to display the image attribute<br>
 from PIL import Image<br>
 image=Image.open("leaf1.jpg")<br>
 print("Filename:",image.filename)<br>
