@@ -77,3 +77,38 @@ Mode: RGB<br>
 Size: (4344, 2896)<br>
 Width: 4344<br>
 Height: 2896<br>
+8. Convert the original image to gray scale and then to binary.<br>
+import cv2<br>
+img=cv2.imread("butterfly2.jpg")<br>
+cv2.imshow("RGB",img)<br>
+cv2.waitKey(0)<br>
+#gray scale<br>
+img=cv2.imread("butterfly2.jpg",0)<br>
+cv2.imshow("Gray",img)<br>
+cv2.waitKey(0)<br>
+#Binary image<br>
+ret,bw_img=cv2.threshold(img,127,255,cv2.THRESH_BINARY)<br>
+cv2.imshow("Binary",bw_img)<br>
+cv2.waitKey(0)<br>
+cv2.destroyAllWindows()<br>
+OUTPUT:<br>
+![image](https://user-images.githubusercontent.com/98145017/174050312-ab25033a-034a-42e4-8fee-5d0606f538e1.png)<br>
+![image](https://user-images.githubusercontent.com/98145017/174050442-50bd49aa-1d90-439e-a85e-a1b8eb029a5b.png)<br>
+![image](https://user-images.githubusercontent.com/98145017/174050511-2fc3f47e-cdbd-466b-ad54-4dd777b1ef80.png)<br>
+9.Resize the original image.<br>
+import cv2<br>
+img=cv2.imread("butterfly3.jpg")<br>
+print("original image length width",img.shape)<br>
+cv2.imshow("original image",img)<br>
+cv2.waitKey(0)<br>
+#to show the resized image<br>
+imgresize=cv2.resize(img,(150,160))<br>
+cv2.imshow("resized image",imgresize)<br>
+print("resized image length width",imgresize.shape)<br>
+cv2.waitKey(0)<br>
+OUTPUT:<br>
+![image](https://user-images.githubusercontent.com/98145017/174050855-469b2a1d-1d2b-46b4-b498-514b22e00f04.png)<br>
+original image length width (558, 1092, 3)<br>
+
+
+
