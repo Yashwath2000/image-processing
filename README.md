@@ -109,86 +109,86 @@ cv2.waitKey(0)<br>
 OUTPUT:<br>
 ![image](https://user-images.githubusercontent.com/98145017/174050855-469b2a1d-1d2b-46b4-b498-514b22e00f04.png)<br>
 original image length width (558, 1092, 3)<br>
-10.Develop a program to readimage using URL
-from skimage import io
-import matplotlib.pyplot as plt
-url="https://images.thequint.com/thequint/2018-01/5d369107-8477-4216-a39d-ad806e1d3a0c/Virat-century.jpg?rect=0%2C0%2C4650%2C2616&auto=format%2Ccompress&fmt=webp.jpg"
-image=io.imread(url)
-plt.imshow(image)
-plt.show()
-OUTPUT:
-![image](https://user-images.githubusercontent.com/98145017/175017290-507ca0c9-f1b5-43e3-8f8d-59bd7e453877.png)
-11. Write a program to mask and blur the image
-import cv2
-import matplotlib.image as mpimg
-import matplotlib.pyplot as plt
-img=cv2.imread('butterfly5.jpg')
-plt.imshow(img)
-plt.show()
-![image](https://user-images.githubusercontent.com/98145017/175017685-3d81a8dd-1c82-49d4-917c-1b458ea73cc3.png)
-hsv_img=cv2.cvtColor(img,cv2.COLOR_RGB2HSV)
-light_orange=(1,190,200)
-dark_orange=(18,255,255)
-mask=cv2.inRange(img,light_orange,dark_orange)
-result=cv2.bitwise_and(img,img,mask=mask)
-plt.subplot(2,1,1)
-plt.imshow(mask,cmap="gray")
-plt.subplot(2,1,2)
-plt.imshow(result)
-plt.show()
-![image](https://user-images.githubusercontent.com/98145017/175017831-32f9f93e-6de8-4b00-8254-f1eb7a3b5a34.png)
-light_white=(0,0,200)
-dark_white=(145,60,255)
-mask_white=cv2.inRange(hsv_img,light_white,dark_white)
-result_white=cv2.bitwise_and(img,img,mask=mask_white)
-plt.subplot(1,2,1)
-plt.imshow(mask_white,cmap="gray")
+10.Develop a program to readimage using URL<br>
+from skimage import io<br>
+import matplotlib.pyplot as plt<br>
+url="https://images.thequint.com/thequint/2018-01/5d369107-8477-4216-a39d-ad806e1d3a0c/Virat-century.jpg?rect=0%2C0%2C4650%2C2616&auto=format%2Ccompress&fmt=webp.jpg"<br>
+image=io.imread(url)<br>
+plt.imshow(image)<br>
+plt.show()<br>
+OUTPUT:<br>
+![image](https://user-images.githubusercontent.com/98145017/175017290-507ca0c9-f1b5-43e3-8f8d-59bd7e453877.png)<br>
+11. Write a program to mask and blur the image<br>
+import cv2<br>
+import matplotlib.image as mpimg<br>
+import matplotlib.pyplot as plt<br>
+img=cv2.imread('butterfly5.jpg')<br>
+plt.imshow(img)<br>
+plt.show()<br>
+![image](https://user-images.githubusercontent.com/98145017/175017685-3d81a8dd-1c82-49d4-917c-1b458ea73cc3.png)<br>
+hsv_img=cv2.cvtColor(img,cv2.COLOR_RGB2HSV)<br>
+light_orange=(1,190,200)<br>
+dark_orange=(18,255,255)<br>
+mask=cv2.inRange(img,light_orange,dark_orange)<br>
+result=cv2.bitwise_and(img,img,mask=mask)<br>
+plt.subplot(2,1,1)<br>
+plt.imshow(mask,cmap="gray")<br>
+plt.subplot(2,1,2)<br>
+plt.imshow(result)<br>
+plt.show()<br>
+![image](https://user-images.githubusercontent.com/98145017/175017831-32f9f93e-6de8-4b00-8254-f1eb7a3b5a34.png)<br>
+light_white=(0,0,200)<br>
+dark_white=(145,60,255)<br>
+mask_white=cv2.inRange(hsv_img,light_white,dark_white)<br>
+result_white=cv2.bitwise_and(img,img,mask=mask_white)<br>
+plt.subplot(1,2,1)<br>
+plt.imshow(mask_white,cmap="gray")<br>
+plt.subplot(1,2,2)<br>
+plt.imshow(result_white)<br>
+plt.show()<br>
+![image](https://user-images.githubusercontent.com/98145017/175017920-0c6af32f-d404-4408-8cd6-92ef5fb72a60.png)<br>
+final_mask=mask+mask_white<br>
+final_result=cv2.bitwise_and(img,img,mask=final_mask)<br>
+plt.subplot(1,2,1)<br>
+plt.imshow(final_mask,cmap="gray")<br>
 plt.subplot(1,2,2)
-plt.imshow(result_white)
-plt.show()
-![image](https://user-images.githubusercontent.com/98145017/175017920-0c6af32f-d404-4408-8cd6-92ef5fb72a60.png)
-final_mask=mask+mask_white
-final_result=cv2.bitwise_and(img,img,mask=final_mask)
-plt.subplot(1,2,1)
-plt.imshow(final_mask,cmap="gray")
-plt.subplot(1,2,2)
-plt.imshow(final_result)
-plt.show()
-![image](https://user-images.githubusercontent.com/98145017/175018041-1c4aa58b-15be-4c0a-8fe1-2c5b7a299ac1.png)
-blur=cv2.GaussianBlur(final_result,(7,7),0)
-plt.imshow(blur)
-plt.show()
-![image](https://user-images.githubusercontent.com/98145017/175018188-0407af3c-a4f4-43a0-9966-15414e5ad409.png)
-13. Write a program to perform arithmatic operations on images
-import cv2
-import matplotlib.image as mpimg
-import matplotlib.pyplot as plt
-img1=cv2.imread("image1.jpg")
-img2=cv2.imread("image1.jpg")
-fimg1=img1 + img2
-plt.imshow(fimg1)
-plt.show()
-cv2.imwrite("output.jpg",fimg1)
-fimg2=img1-img2
-plt.imshow(fimg2)
-plt.show()
-
-cv2.imwrite("output.jpg",fimg2)
-fimg3=img1*img2
-plt.imshow(fimg3)
-plt.show()
-
-cv2.imwrite("output.jpg",fimg3)
-fimg4=img1/img2
-plt.imshow(fimg4)
-plt.show()
-
-cv2.imwrite('output.jpg',fimg4)
-OUTPUT:
-![image](https://user-images.githubusercontent.com/98145017/175018411-b94ba631-c919-4d32-bec9-60af8e042d74.png)
-![image](https://user-images.githubusercontent.com/98145017/175018456-70c20a89-601f-47e2-a455-5ecf7d630cdf.png)
-![image](https://user-images.githubusercontent.com/98145017/175018513-2c4372ac-370c-4228-b11d-32403aa82681.png)
-![image](https://user-images.githubusercontent.com/98145017/175018608-49625801-289c-4e6a-90cf-fa3785d48a4a.png)
+plt.imshow(final_result)<br>
+plt.show()<br>
+![image](https://user-images.githubusercontent.com/98145017/175018041-1c4aa58b-15be-4c0a-8fe1-2c5b7a299ac1.png)<br>
+blur=cv2.GaussianBlur(final_result,(7,7),0)<br>
+plt.imshow(blur)<br>
+plt.show()<br>
+![image](https://user-images.githubusercontent.com/98145017/175018188-0407af3c-a4f4-43a0-9966-15414e5ad409.png)<br>
+13. Write a program to perform arithmatic operations on images<br>
+import cv2<br>
+import matplotlib.image as mpimg<br>
+import matplotlib.pyplot as plt<br>
+img1=cv2.imread("image1.jpg")<br>
+img2=cv2.imread("image1.jpg")<br>
+fimg1=img1 + img2<br>
+plt.imshow(fimg1)<br>
+plt.show()<br>
+cv2.imwrite("output.jpg",fimg1)<br>
+fimg2=img1-img2<br>
+plt.imshow(fimg2)<br>
+plt.show()<br>
+<br>
+cv2.imwrite("output.jpg",fimg2)<br>
+fimg3=img1*img2<br>
+plt.imshow(fimg3)<br>
+plt.show()<br>
+<br>
+cv2.imwrite("output.jpg",fimg3)<br>
+fimg4=img1/img2<br>
+plt.imshow(fimg4)<br>
+plt.show()<br>
+<br>
+cv2.imwrite('output.jpg',fimg4)<br>
+OUTPUT:<br>
+![image](https://user-images.githubusercontent.com/98145017/175018411-b94ba631-c919-4d32-bec9-60af8e042d74.png)<br>
+![image](https://user-images.githubusercontent.com/98145017/175018456-70c20a89-601f-47e2-a455-5ecf7d630cdf.png)<br>
+![image](https://user-images.githubusercontent.com/98145017/175018513-2c4372ac-370c-4228-b11d-32403aa82681.png)<br>
+![image](https://user-images.githubusercontent.com/98145017/175018608-49625801-289c-4e6a-90cf-fa3785d48a4a.png)<br>
 
 
 
