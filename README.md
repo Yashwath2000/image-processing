@@ -189,6 +189,40 @@ OUTPUT:<br>
 ![image](https://user-images.githubusercontent.com/98145017/175018456-70c20a89-601f-47e2-a455-5ecf7d630cdf.png)<br>
 ![image](https://user-images.githubusercontent.com/98145017/175018513-2c4372ac-370c-4228-b11d-32403aa82681.png)<br>
 ![image](https://user-images.githubusercontent.com/98145017/175018608-49625801-289c-4e6a-90cf-fa3785d48a4a.png)<br>
+12.
+import cv2 
+img=cv2.imread("flower3.jpg")
+gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+hsv=cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+lab=cv2.cvtColor(img,cv2.COLOR_BGR2LAB)
+hls=cv2.cvtColor(img,cv2.COLOR_BGR2HLS)
+yuv=cv2.cvtColor(img,cv2.COLOR_BGR2YUV)
+cv2.imshow("GRAY image",gray)
+cv2.imshow("HSV image",hsv)
+cv2.imshow("LAB image",lab)
+cv2.imshow("HLS image",hls)
+cv2.imshow("YUV image",yuv)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+OUTPUT:
+![image](https://user-images.githubusercontent.com/98145017/175282593-176f9f27-04a8-475f-90f2-cd472146359c.png)
+![image](https://user-images.githubusercontent.com/98145017/175282653-fb6c7d91-1484-47d4-b0be-0efd966ea055.png)
+![image](https://user-images.githubusercontent.com/98145017/175282706-875418a3-10e7-4086-8ca2-c32e0c56d67c.png)
+![image](https://user-images.githubusercontent.com/98145017/175282784-8071bfe6-8c54-45d1-a32b-e7ca65d038f9.png)
+![image](https://user-images.githubusercontent.com/98145017/175282855-7209bb80-6734-4622-b46b-be770912bfce.png)
+13.
+import cv2 as c
+import numpy as np
+from PIL import Image
+array=np.zeros([100,200,3],dtype=np.uint8)
+array[:,:100]=[255,130,0]
+array[:,100:]=[0,0,255]
+img=Image.fromarray(array)
+img.save("image3.png")
+img.show()
+c.waitKey(0)
+OUTPUT:
+![image](https://user-images.githubusercontent.com/98145017/175283161-ed7c91f2-a773-486c-ba24-b5b699f20fe1.png)
 
 
 
