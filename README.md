@@ -223,7 +223,9 @@ img.show()
 c.waitKey(0)
 OUTPUT:
 ![image](https://user-images.githubusercontent.com/98145017/175283161-ed7c91f2-a773-486c-ba24-b5b699f20fe1.png)
-
+exer 2;http://localhost:8888/notebooks/yashwath%20ip%20lab/exercise2.ipynb
+erse 3:http://localhost:8888/notebooks/yashwath%20ip%20lab/exercise3.ipynb
+exer 4:http://localhost:8888/notebooks/yashwath%20ip%20lab/exercise4.ipynb
 
 
 
