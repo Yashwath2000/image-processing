@@ -323,19 +323,57 @@ plt.imshow(gradient)<br>
 cv2.waitKey(0)<br>
 OUTPUT:<br>
 ![image](https://user-images.githubusercontent.com/98145017/176422923-5a986101-0b2d-497f-b64b-dea7ad122afd.png)<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+18. Develop a program to<br>
+(i)                Read the image, convert it into grayscale image<br>
+(ii)              write (save) the grayscale image and<br>
+(iii)            display the original image and grayscale image<br>
+import cv2<br>
+OriginalImg=cv2.imread("virat2.jpg")<br>
+GrayImg=cv2.imread('virat2.jpg',0)<br>
+isSaved=cv2.imwrite('E:/i.jpg',GrayImg)<br>
+cv2.imshow('Display Orignal Image',OriginalImg)<br>
+cv2.imshow('Display Grayscale Image',GrayImg)<br>
+cv2.waitKey(0)<br>
+cv2.destroyAllWindows()<br>
+if isSaved:<br>
+    print('the image is successfully saved.')<br>
+OUTPUT:<br>
+![image](https://user-images.githubusercontent.com/98145017/178713544-a9036a40-0cf3-4c2d-a02a-3f8b1412de08.png)<br>
+19.Slicing_With_Background<br>
+import cv2<br>
+import numpy as np<br>
+from matplotlib import pyplot as plt<br>
+image=cv2.imread('cat1.jpg',0)<br>
+x,y=image.shape<br>
+z=np.zeros((x,y))<br>
+for i in range(0,x):<br>
+    for j in range(0,y):<br>
+        if(image[i][j]>50 and image[i][j]<150):<br>
+            z[i][j]=255<br>
+        else:<br>
+             z[i][j]=image[i][j]<br>
+equ=np.hstack((image,z))<br>
+plt.title('Graylevel slicing with background')<br>
+plt.imshow(equ,'gray')<br>
+plt.show()<br>
+OUTPUT:<br>
+![image](https://user-images.githubusercontent.com/98145017/178713947-7e60b8f0-630d-47f6-8603-d3f441d4d748.png)<br>
+20.Slicing_Without_Background<br>
+import cv2<br>
+import numpy as np<br>
+from matplotlib import pyplot as plt<br>
+image=cv2.imread('cat1.jpg',0)<br>
+x,y=image.shape<br>
+z=np.zeros((x,y))<br>
+for i in range(0,x):<br>
+    for j in range(0,y):<br>
+        if(image[i][j]>50 and image[i][j]<150):<br>
+            z[i][j]=255<br>
+        else:<br>
+             z[i][j]=0<br>
+equ=np.hstack((image,z))<br>
+plt.title('Graylevel slicing without background')<br>
+plt.imshow(equ,'gray')<br>
+plt.show()<br>
+OUTPUT:<br>
+![image](https://user-images.githubusercontent.com/98145017/178714183-660dd3d4-548c-4e10-a607-3ff804b6b760.png)<br>
