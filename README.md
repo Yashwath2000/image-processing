@@ -377,3 +377,32 @@ plt.imshow(equ,'gray')<br>
 plt.show()<br>
 OUTPUT:<br>
 ![image](https://user-images.githubusercontent.com/98145017/178714183-660dd3d4-548c-4e10-a607-3ff804b6b760.png)<br>
+21.Analyse gthe data using Histogram<br><br>
+import numpy as np<br>
+import skimage.color<br>
+import skimage.io<br>
+import matplotlib.pyplot as plt<br>
+#%matplotlib widget<br>
+<br>
+# read the image of a plant seedling as grayscale from the outset<br>
+image = skimage.io.imread(fname="virat1.jpg", as_gray=True)<br>
+<br>
+# display the image<br>
+fig, ax = plt.subplots()<br>
+plt.imshow(image, cmap="gray")<br>
+plt.show()<br>
+<br>
+# create the histogram<br>
+histogram, bin_edges = np.histogram(image, bins=256, range=(0, 1))<br>
+<br>
+# configure and draw the histogram figure<br>
+plt.figure()<br>
+plt.title("Grayscale Histogram")<br>
+plt.xlabel("grayscale value")<br>
+plt.ylabel("pixel count")<br>
+plt.xlim([0.0, 1.0])  # <- named arguments do not work here<br>
+<br>
+plt.plot(bin_edges[0:-1], histogram)  # <- or here<br>
+plt.show()<br>
+OUTPUT:<br>
+![image](https://user-images.githubusercontent.com/98145017/178972486-ab17b2e1-1768-4463-b1f0-97e2d55ebde1.png)<br>
