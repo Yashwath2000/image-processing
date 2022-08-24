@@ -542,3 +542,4 @@ output;
 ![image](https://user-images.githubusercontent.com/98145017/186405539-e7fff60b-e2d0-4df6-8d05-72f1cd420a3b.png)
 ![image](https://user-images.githubusercontent.com/98145017/186405658-a1529044-e359-41bd-ae4a-6c15f91bbf33.png)
 
+31.Read an image to find max,min,average and standard deviation of pixel value.
