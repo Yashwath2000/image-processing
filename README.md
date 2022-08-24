@@ -511,4 +511,34 @@ im1.show()<br>
 plt.imshow(im1)<br>
 plt.show()<br>
 ![image](https://user-images.githubusercontent.com/98145017/179972176-16a4378d-e091-4792-bb7e-ca5669599da3.png)<br>
+**program to display the different color in diagonal with matrix
+from PIL import Image
+import numpy as np
+from matplotlib import pyplot as plt
+w, h = 512, 512
+data = np.zeros((h, w, 3), dtype=np.uint8)
+data[0:100, 0:100] = [255, 0, 0]
+data[100:200, 100:200] = [255, 0, 255]
+data[200:300, 200:300] = [0, 255, 0]
+img = Image.fromarray(data, 'RGB')
+img.save('my.png')
+plt.imshow(img)
+plt.show()
+from PIL import Image
+import numpy as np
+w, h = 600, 600
+data = np.zeros((h, w, 3), dtype=np.uint8)
+data[0:100, 0:100] = [255, 0, 0]
+data[100:200, 100:200] = [255, 0, 255]
+data[200:300, 200:300] = [0, 255, 0]
+data[300:400,300:400]=[0,0,255]
+data[400:500,400:500]=[255,255,0]
+data[500:600,500:600]=[0,255,255]
+img = Image.fromarray(data, 'RGB')
+img.save('my.png')
+plt.imshow(img)
+plt.show()
+output;
+![image](https://user-images.githubusercontent.com/98145017/186405539-e7fff60b-e2d0-4df6-8d05-72f1cd420a3b.png)
+![image](https://user-images.githubusercontent.com/98145017/186405658-a1529044-e359-41bd-ae4a-6c15f91bbf33.png)
 
