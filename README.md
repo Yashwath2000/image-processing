@@ -543,3 +543,79 @@ output;
 ![image](https://user-images.githubusercontent.com/98145017/186405658-a1529044-e359-41bd-ae4a-6c15f91bbf33.png)
 
 31.Read an image to find max,min,average and standard deviation of pixel value.
+from numpy import asarray
+from PIL import Image
+image = Image.open('cat1.jpg')
+pixels = asarray(image)
+#print('Data Type: %s' % pixels.dtype)
+print('Min: %.3f, Max: %.3f' % (pixels.min(), pixels.max()))
+pixels = pixels.astype('float32')
+pixels /= 255.0
+print('Min: %.3f, Max: %.3f' % (pixels.min(), pixels.max()))
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+img=cv2.imread("cat1.jpg",0)
+img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+plt.imshow(img)
+np.average(img)
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+img=cv2.imread("cat1.jpg",0)
+img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+plt.imshow(img)
+np.average(img)
+from PIL import Image,ImageStat
+import matplotlib.pyplot as plt
+im=Image.open('cat1.jpg')
+plt.imshow(im)
+plt.show()
+stat=ImageStat.Stat(im)
+print(stat.stddev)
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+img=cv2.imread('cat1.jpg' )
+plt.imshow(img)
+plt.show()
+max_channels = np.amax([np.amax(img[:,:,0]), np.amax(img[:,:,1]),np.amax(img[:,:,2])])
+print(max_channels)
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+img=cv2.imread('cat1.jpg' )
+plt.imshow(img)
+plt.show()
+min_channels = np.amin([np.min(img[:,:,0]), np.amin(img[:,:,1]),np.amin(img[:,:,2])])
+print(min_channels)
+OUTPUT:
+![image](https://user-images.githubusercontent.com/98145017/186652297-9b18dcff-449d-4923-baf3-6ff0c9eca037.png)
+![image](https://user-images.githubusercontent.com/98145017/186652390-fe22537d-330d-4aa1-84e5-9bfbb97e7dc8.png)
+![image](https://user-images.githubusercontent.com/98145017/186652493-8bda717d-9b7c-4c26-b831-52e85013492b.png)
+######
+def printPattern(n):
+    arraySize = n * 2 - 1;
+    result = [[0 for x in range(arraySize)]
+                 for y in range(arraySize)];
+    #Fill the values<br>
+    for i in range(arraySize):
+        for j in range(arraySize):
+            if(abs(i - (arraySize // 2)) >
+               abs(j - (arraySize // 2))):
+                result[i][j] = abs(i - (arraySize // 2));
+            else:
+                result[i][j] = abs(j - (arraySize // 2));
+    #Print the array<br>
+    for i in range(arraySize):
+        for j in range(arraySize):
+            print(result[i][j], end = " ");
+        print("");
+ #Driver Code<br>
+n = 4;
+printPattern(n);
+OUTPUT:
+![image](https://user-images.githubusercontent.com/98145017/186652645-3f726d59-1f1b-4e52-893c-d7f7d0f07ef1.png)
+
+
+
