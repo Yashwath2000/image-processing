@@ -648,3 +648,225 @@ cv2.destroyAllWindows()
 output:
 ![image](https://user-images.githubusercontent.com/98145017/186653583-5990aa0f-493f-4601-a834-50fc842343d3.png)
 
+Basic pillow functions
+A.
+from PIL import Image, ImageChops, ImageFilter
+from matplotlib import pyplot as plt
+
+x = Image.open("x.png")
+o=Image.open("o.png")
+
+print('size of the image:', x.size, 'colour mode:', x.mode)
+print('size of the image: ', o.size, 'colour mode:', o.mode)
+
+plt.subplot(121),plt.imshow(x)
+plt.axis('off')
+plt.subplot(122), plt.imshow(o)
+plt.axis('off')
+
+merged=ImageChops.multiply(x,o)
+add=ImageChops.add(x,o)
+
+greyscale=merged.convert('L')
+greyscale
+OUTPUT:
+![image](https://user-images.githubusercontent.com/98145017/187899655-dc72a406-ad55-407a-9fac-7001ac770153.png)
+B.
+image=merged
+print('image size:',image.size,
+'\ncolor mode:', image.mode,
+'\nimage width:', image.width,'| also represented by:',image.size[0],
+'\nimage height:', image.height, '| also represented by:',image.size[1],)
+OUTPUT:
+![image](https://user-images.githubusercontent.com/98145017/187899821-29890323-bf65-4d25-a9df-fdc3d6ed0a72.png)
+C.
+pixel = greyscale.load()
+for row in range (greyscale.size[0]):
+ for column in range(greyscale.size[1]):
+    if pixel[row, column] != (255):
+     pixel[row, column] = (0)
+greyscale
+OUTPUT:
+![image](https://user-images.githubusercontent.com/98145017/187900095-13368319-1611-47bd-94c3-f1abddab9626.png)
+D.
+invert = ImageChops.invert(greyscale)
+
+bg=Image.new('L', (256, 256), color=(255))
+subt=ImageChops. subtract (bg, greyscale)
+rotate =subt.rotate(45)
+rotate
+OUTPUT:
+![image](https://user-images.githubusercontent.com/98145017/187900432-33b6af23-5391-4d18-9e5a-4a6749a2f265.png)
+E.
+blur=greyscale.filter(ImageFilter.GaussianBlur (radius=1))
+edge=blur.filter(ImageFilter.FIND_EDGES)
+edge
+OUTPUT:
+![image](https://user-images.githubusercontent.com/98145017/187900676-e10c2344-40ad-4649-add6-03fadc19c321.png)
+F.
+edge=edge.convert('RGB')
+
+bg_red=Image.new('RGB', (256,256), color=(255,0,0))
+filled_edge = ImageChops.darker(bg_red, edge)
+filled_edge
+OUTPUT:
+![image](https://user-images.githubusercontent.com/98145017/187900778-9c07b44a-8ec5-42bc-9a0b-fa425e13fd09.png)
+
+Image restoration
+a)restore damaged images
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+#open the image
+img=cv2.imread('billi.jpg')
+plt.imshow(img)
+plt.show()
+#load the image
+mask=cv2.imread('mask.jpg',0)
+plt.imshow(mask)
+plt.show()
+#inpaint
+dst=cv2.inpaint(img,mask,3,cv2.INPAINT_TELEA)
+
+#write the output
+cv2.imwrite('output1.jpg',dst)
+plt.imshow(dst)
+plt.show()  
+OUTPUT:
+![image](https://user-images.githubusercontent.com/98145017/187903188-91f5a34e-a046-4354-975d-0d8d3a4626c0.png)
+![image](https://user-images.githubusercontent.com/98145017/187903273-2776b060-cee1-4bbd-bd72-3de75c5646ac.png)
+![image](https://user-images.githubusercontent.com/98145017/187903411-b3ce64bb-c95e-4e3f-b9b2-24ab99b9b4a6.png)
+b)Removing logos
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+plt.rcParams['figure.figsize']=(10,8)
+
+def show_image(image,tittle='Image', cmap_type='gray'):
+    plt.imshow(image,cmap=cmap_type)
+    plt.title(title)
+    plt.axis('off')
+    
+def plot_comparison(img_original, img_filtered,img_title_filtered):
+    fig,(ax1,ax2)=plt.subplots(ncols=2,figsize=(10,8), sharex=True, sharey=True)
+    ax1.imshow(img_original,cmap=plt.cm.gray)
+    ax1.set_title('Original')
+    ax1.axis('off')
+    ax2.imshow(img_filtered, cmap=plt.cm.gray)
+    ax2.set_title(img_title_filtered)
+    ax2.axis('off')
+    
+from skimage.restoration import inpaint
+from skimage.transform import resize
+from skimage import color
+
+image_with_logo=plt.imread('imlogo.png')
+#initialise the mask
+mask=np.zeros(image_with_logo.shape[:-1])
+
+#set the [pixels where the logo is to 1
+mask[210:272,360:425]=1
+
+#apply inpainting to remove the logo
+image_logo_removed=inpaint.inpaint_biharmonic(image_with_logo,mask,multichannel=True)
+
+#show the originaland logo removed images
+plot_comparison(image_with_logo,image_logo_removed,"Image with logo removed")
+![image](https://user-images.githubusercontent.com/98145017/187903750-7c8d9a2f-2722-4ece-bd32-4fc223b9c96e.png)
+import cv2
+import matplotlib.pyplot as plt
+
+
+from skimage.util import random_noise
+fruit_image=plt.imread('fruitts.jpeg')
+
+#Add noise to the image
+noisy_image=random_noise(fruit_image)
+
+#show th original and resulting image
+plot_comparison(fruit_image,noisy_image,'Noisy_image')
+![image](https://user-images.githubusercontent.com/98145017/187904388-43cf3ac6-8cea-4b3f-9d80-2a9ca2203a52.png)
+from skimage.restoration import denoise_tv_chambolle
+
+noisy_image=plt.imread('noisy.jpg')
+
+#Apply total variation filtern denoising
+denoised_image=denoise_tv_chambolle(noisy_image,multichannel=True)
+
+#show the noisy and denoised image
+plot_comparison(noisy_image,denoised_image,'Denoised Image')
+![image](https://user-images.githubusercontent.com/98145017/187904441-6e1e556d-90bb-4978-8f47-1a31b896d9ce.png)
+from skimage.restoration import denoise_bilateral
+
+landscape_image= plt.imread('noisy.jpg')
+
+#Apply bilateral filletr denoising
+denoised_image=denoise_bilateral(landscape_image,multichannel=True)
+
+#show original and resulting images
+plot_comparison(landscape_image,denoised_image,'Denoised Image')
+![image](https://user-images.githubusercontent.com/98145017/187904514-ca34a450-1c6c-4bde-a330-e9f37a7062c5.png)
+#Segmentation:
+
+from skimage.segmentation import slic
+from skimage.color import label2rgb
+
+face_image=plt.imread('face.jpg')
+
+#obtain the segmentation with 400 regions
+segments=slic(face_image,n_segments=400)
+
+#put segments on top of original image to compare
+segmented_image= label2rgb(segments,face_image,kind='avg')
+
+#show the segmented image
+plot_comparison(face_image,segmented_image,'segmented image,400 superpixels')
+![image](https://user-images.githubusercontent.com/98145017/187904573-b4f7fbd2-c715-42db-b73c-5e6a57cbb687.png)
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+plt.rcParams['figure.figsize']=(10,8)
+def show_image_contour(image, contours):
+    plt.figure()
+    for n, contour in enumerate (contours):
+        plt.plot(contour[:, 1], contour[:, 0], linewidth=3)
+    plt.imshow(image, interpolation='nearest', cmap='gray_r')
+    plt.title('Contours')
+    plt.axis('off')
+
+from skimage import measure, data
+horse_image = data.horse()
+contours = measure.find_contours(horse_image, level=0.8)
+show_image_contour(horse_image, contours)
+![image](https://user-images.githubusercontent.com/98145017/187904694-67a1a000-053e-45b5-9aa2-d1cf1cbf592e.png)
+from skimage.restoration import inpaint
+from skimage.transform import resize
+from skimage import color
+from skimage.io import imread
+from skimage.filters import threshold_otsu
+image_dices = imread('diceimg.png')
+image_dices = color.rgb2gray(image_dices)
+thresh = threshold_otsu(image_dices)
+binary = image_dices > thresh
+contours = measure.find_contours(binary, level=0.8)
+show_image_contour(image_dices,contours)
+![image](https://user-images.githubusercontent.com/98145017/187904782-8fad952d-a08b-4632-b5f2-0c58733b2672.png)
+import numpy as np
+shape_contours = [cnt.shape[0] for cnt in contours]
+
+max_dots_shape = 50
+
+dots_contours = [cnt for cnt in contours if np.shape(cnt)[0] < max_dots_shape]
+
+show_image_contour (binary, contours)
+
+print('Dices dots number:{}.'.format(len(dots_contours)))
+![image](https://user-images.githubusercontent.com/98145017/187904836-f86b4b33-4add-4008-8510-4a712923f60b.png)
+
+
+
+
+
+
+
+
